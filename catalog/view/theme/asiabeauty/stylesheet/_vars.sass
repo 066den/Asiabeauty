@@ -1,0 +1,24 @@
+$default-font: 'openSans', sans-serif
+$heading-font: 'GothamPro', sans-serif
+$accent: #F73F69
+$accent2: #9C9C9C
+$text: #2E363F
+$text-gray: #898989
+$accent-line: #E3E3E3
+$spacing: .19em
+$trans3: all 0.3s ease
+$trans2: all .25s ease
+=transition($sel, $time)
+	transition: $sel $time ease-in-out
+=border($color)
+	border: 1px solid $color
+=transform($tx, $ty)
+	transform: translate3d($tx, $ty,0)
+
+// Customization Bootstrap vars from "app/libs/bootstrap/scss/_variables.scss"
+$grid-gutter-width: 30px
+$grid-columns: 12
+$grid-breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1350px)
+$container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1200px)
+
+$gutter: $grid-gutter-width

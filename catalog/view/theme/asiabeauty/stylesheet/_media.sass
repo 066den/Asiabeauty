@@ -1,0 +1,319 @@
+@import "vars"
+
+
+/*==========  Desktop First  ==========*/
+
+// ≥1200px
++media-breakpoint-down(lg)
+	.mtmegamenu
+		>ul
+			>li
+				a
+					font-size: 11px
+					font-weight: bold
+	.mega-menu-title
+		.h3
+			font-size: 11px
+	.header-top
+		font-size: .76em
+	.phone-contain 
+		.phone
+			font-size: 1.05em
+	[class*='modul']
+		margin-bottom: 45px
+	.owl-carousel 
+		.item-product
+			padding: 15px
+		.product-layout
+			margin-bottom: 0
+// ≥992px
++media-breakpoint-down(md)
+	header
+		padding-bottom: 50px
+	nav
+		padding-top: 46px
+		z-index: 20
+		background: transparent
+		&.active
+			.toggle-menu
+				position: fixed
+			.menu-mobile
+				+transform(0, 0)
+	.toggle-menu
+		display: block
+	.mega-menu-title
+		.h3
+			display: block
+			text-align: center
+	.menu-mobile
+		position: fixed
+		top: 0
+		left: 0
+		padding: 50px 15px 15px
+		+transform(100%, 0)
+		background: #fff
+		transition: $trans3
+	.mtmegamenu
+		overflow-y: auto
+		background: #fff
+		border-top: none
+		>ul
+			>li
+				display: block
+				border-bottom: 1px solid #f0f0f0
+		.more
+			right: 35px
+			>a
+				font-size: 20px
+	.header-container 
+		.btn-sky
+			width: 40px
+			padding: 10px 0
+			i
+				font-size: 20px
+	.link-wishlist .wishlist-total,
+	.mini-cart .basket .cart-total
+		font-size: 15px
+		height: 28px
+		width: 28px
+		line-height: 26px
+		left: -14px
+		top: -14px
+	.payment 
+		li
+			width: 45px
+			height: 28px
+			&.mc
+				background-position: -46px 0
+			&.mir
+				background-position: -91px 0
+	.social 
+		a
+			font-size: 23px
+	.btn
+		font-size: 13px
+		&.btn-default, &.btn-primary
+			padding: 5px 20px
+	.product-gallery 
+		padding-left: 0
+		padding-bottom: 75px
+		.owl-carousel
+			.owl-dots
+				margin-right: 0
+				margin-top: 5px
+				top: 100%
+				right: 0
+				left: 0
+				height: auto
+				width: 100%
+				white-space: nowrap
+			.owl-dot
+				width: 77px
+				height: 60px
+				margin-bottom: 0
+				margin-right: 7px
+				&:last-child
+					margin-right: 0
+	.product-label
+		&.product-page-labels
+			left: 0
+	.product-data
+		li
+			margin-bottom: 3px
+		.thumb
+			width: 50px
+		.btn-dropdown
+			min-height: 50px
+		.btn-dropdown, .dropdown-menu
+			padding: 3px 25px 3px 5px
+	.nav-tabs 
+		li 
+			a
+				padding: 10px 15px
+	.PB_plusbutton
+		font-size: 3em
+// ≥768px	
++media-breakpoint-down(sm)
+	.top-search 
+		.form-control
+			height: 40px
+		button
+			line-height: 40px
+			i
+				font-size: 18px
+	.mtmegamenu
+		>ul
+			padding: 15px 0
+	.advantages-block
+		padding: 15px 0
+		&.preimushchestva 
+			.image
+				margin-bottom: 15px
+	.info-panel
+		.info-desc
+			font-size: 1.2em
+	.ndash
+		margin-left: 0
+		margin-right: 0
+	.product-gallery
+		padding-left: 0
+		margin-bottom: 20px
+		.owl-carousel 
+			.owl-dots
+				top: 100%
+				right: 0
+				left: 0
+	.product-wrap
+		margin-bottom: 0
+	.nav-tabs 
+		li 
+			a
+				min-width: auto
+				padding: 8px 10px
+				font-size: .54em
+	.advvideos
+		a
+			width: 50px
+	.PB_bundle_info
+		text-align: center
+	.PB_options_product_item
+		margin-bottom: 0
+// ≥576px
++media-breakpoint-down(xs)
+	.h2, h2
+		font-size: 1.2em
+		line-height: 1.2
+	
+	.logo
+		max-width: 80px
+		margin: 0 auto
+	.header-top
+		font-size: 10px
+	.phone-contain 
+		.phone 
+			small
+				font-size: .649em
+		.callback
+			//font-size: .79em
+			display: none
+		a
+			font-size: .7em
+	.header-container 
+		.btn-sky
+			width: 34px
+			padding: 8px 0
+			i
+				font-size: 18px
+	.link-wishlist .wishlist-total,
+	.mini-cart .basket .cart-total
+		font-size: 12px
+		height: 24px
+		width: 24px
+		line-height: 24px
+		left: -10px
+		top: -10px
+	header
+		padding-bottom: 50px
+	.top-search
+		.form-control
+			height: 30px
+			font-size: 13px
+		button
+			line-height: 30px
+			padding: 0 10px
+	.mega-menu-title 
+		.h3
+			display: block
+	
+	ul.breadcrumb
+		margin-bottom: 15px
+	.product-thumb
+		padding: 5px 5px 15px
+		.image
+			padding: 0 10px
+		.price
+			font-size: 1em
+			margin-bottom: 10px
+		.product-title
+			line-height: 1
+			padding: 0 5px
+			min-height: 80px
+			min-height: 80px
+	.advantages-block
+		&.preimushchestva 
+			p
+				margin-bottom: 15px
+	.products
+		&.row
+			margin-right: -10px
+			margin-left: -10px
+			.product-grid
+				padding-right: 10px
+				padding-left: 10px
+				margin-bottom: 15px
+	.product-layout
+		margin-bottom: 20px
+	.tab-content
+		>.tab-pane
+			padding: 15px 10px
+			.table-specification
+				font-size: .875em
+	.product-data 
+		.lbl
+			font-size: 12px
+			padding: 0 10px
+	.table 
+		td, th
+			padding: .5rem .2rem
+	.ocpb-products 
+		thead
+			td
+				white-space: nowrap
+				font-size: .8em
+	.qty-td
+		.btn.btn-default
+			padding: 5px 14px
+/*==========  Mobile First  ==========*/
+
+// ≤576px
++media-breakpoint-up(sm)
+	
+// ≤768px
++media-breakpoint-up(md)
+	.btn
+		&.btn-default, &.btn-primary
+			min-width: 130px	
+// ≤992px
++media-breakpoint-up(lg)
+	.btn
+		&.btn-default, &.btn-primary
+			min-width: 150px
+// ≤1200px
++media-breakpoint-up(xl)
+	.product-layout
+		height: 420px
+		&:hover
+			z-index: 3
+			.button-group
+				max-height: 40px
+			.btn
+				opacity: 1
+			.product-thumb
+				box-shadow: 0px 0px 29px 3px rgba(#000, .15)
+			.btn-sky
+				opacity: 1
+				visibility: visible
+	.product-thumb
+		position: absolute
+		width: 100%
+		top: 0
+		left: 0
+		.button-group
+			max-height: 0
+		.btn
+			opacity: 0
+		.btn-sky
+			opacity: 0
+	.btn
+		&.btn-default, &.btn-primary
+			min-width: 170px
