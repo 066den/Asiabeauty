@@ -393,7 +393,8 @@ class ControllerCheckoutCart extends Controller {
 				}
 
 				
-			    $json['total'] = $this->cart->countProducts();	
+			    $json['total'] = $this->cart->countProducts();
+ 				$json['total_price'] = $total;
 			
 			} else {
 				$json['redirect'] = str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']));
@@ -494,7 +495,8 @@ class ControllerCheckoutCart extends Controller {
 			}
 
 			
-			    $json['total'] = $this->cart->countProducts();	
+			    $json['total'] = $this->cart->countProducts();
+ 				$json['total_price'] = $total;
 			
 		}
 

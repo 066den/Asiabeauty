@@ -148,6 +148,21 @@ class ControllerProductCategory extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
+
+// Labels start
+				$this->load->model('setting/setting');
+				$data['labels_status'] = $this->config->get('labels_status');
+				$data['labels_sold_status'] = $this->config->get('labels_sold_status');
+				$data['labels_last_status'] = $this->config->get('labels_last_status');
+				$data['labels_new'] = $this->config->get('labels_new');
+				$data['labels_sale_type'] = $this->config->get('labels_sale_type');
+				$data['labels_new_text'] = $this->config->get('labels_new_text-'.$this->config->get('config_language_id'));
+				$data['labels_bestseller_text'] = $this->config->get('labels_bestseller_text-'.$this->config->get('config_language_id'));
+				$data['labels_last_text'] = $this->config->get('labels_last_text-'.$this->config->get('config_language_id'));
+				$data['labels_sold_text'] = $this->config->get('labels_sold_text-'.$this->config->get('config_language_id'));
+				$data['labels_sale_text'] = $this->config->get('labels_sale_text-'.$this->config->get('config_language_id'));
+// Labels end	
+			
 			$data['categories'] = array();
 
 			$results = $this->model_catalog_category->getCategories($category_id);
@@ -167,6 +182,18 @@ class ControllerProductCategory extends Controller {
 				);
 			}
 
+
+// Labels start
+				$data['bestsellers'] = array();
+				$bestsellers = $this->model_catalog_product->getBestSellerProducts( $this->config->get('labels_bestseller') );
+
+				foreach ($bestsellers as $bestseller) {				
+					$data['bestsellers'][] = array(
+						'bestseller_id' => $bestseller['product_id']
+					);
+				}
+// Labels end
+			
 			$data['products'] = array();
 
 			$filter_data = array(
@@ -242,6 +269,14 @@ class ControllerProductCategory extends Controller {
 					'price'       => $price,
 					'special'     => $special,
 					'tax'         => $tax,
+
+// Labels start
+				'is_new'      => date_diff(new DateTime(date("Y-m-d H:i:s")), new DateTime(date($result['date_added'])))->days,
+				'percent'     => $result['special'] !=0 && $result['price'] !=0 ? round(100 - ($result['special']*100/$result['price'])) : 0,
+				'sold'        => $result['quantity'] <= 0 ? 1 : 0,
+				'last'        => $result['quantity'],
+// Labels end
+			
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $result['rating'],
 					'href'        => $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url)
@@ -408,6 +443,7 @@ class ControllerProductCategory extends Controller {
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');
 			$data['content_top'] = $this->load->controller('common/content_top');
+$data['full_content'] = $this->load->controller('common/full_content');
 			$data['content_bottom'] = $this->load->controller('common/content_bottom');
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
@@ -474,6 +510,7 @@ class ControllerProductCategory extends Controller {
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');
 			$data['content_top'] = $this->load->controller('common/content_top');
+$data['full_content'] = $this->load->controller('common/full_content');
 			$data['content_bottom'] = $this->load->controller('common/content_bottom');
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');

@@ -4,7 +4,7 @@
 
 ::placeholder
 	color: #959595
-	font-family: 'openSansItalic', sans-serif
+	font-family: 'openSans', sans-serif
 
 ::selection
 	background-color: $accent
@@ -18,6 +18,7 @@ body
 	font-family: $default-font
 	overflow-x: hidden
 	color: $text
+	background-color: #F5F3F0
 	input, textarea
 		border: #666 1px solid
 		outline: none
@@ -25,28 +26,21 @@ body
 			border-color: red
 		&:required:valid
 			border-color: green
-	&.scroll
-		nav
-			position: fixed
-			top: 0
-		.mtmegamenu
-			>ul
-				>li 
-					a
-						font-size: 12px
+	
 	&.bf-non-scrollable
 		.toggle-menu
 			display: none
-h1, .h1, h2, .h2, h3, .h3
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6
 	font-weight: bold
-.information-information-11
-	.h1
-		display: none
+	line-height: 1.2
+
+h1, .h1
+	font-size: 2.2em
+	font-weight: 400
 h2, .h2
 	font-size: 1.75em
 	text-transform: uppercase
-	color: #14334f
-	margin-bottom: .6em
+	margin-bottom: 1.875em
 h3, .h3
 	font-size: 1.5em
 	color: #252525
@@ -54,13 +48,11 @@ h3, .h3
 	margin-bottom: .7em
 h4, .h4
 	font-size: 1.375em
-	font-weight: bold
 	margin-bottom: .5em
 	a
 		color: inherit
 h5, .h5
 	font-size: 1.25em
-	font-weight: bold
 	color: #191919
 
 .img-responsive
@@ -100,20 +92,19 @@ ul, ol
 		margin-left: 0
 		list-style: none
 	&.inline, &.breadcrumb
-		margin-left: 0
+		padding-left: 0
 		margin-bottom: 0
 		list-style: none
-		&.social
-			margin-bottom: 15px
 		>li
 			display: inline-block
-			padding-right: 5px
 			padding-left: 5px
 
 ul ul, ul ol, ol ol, ol ul
 	margin-bottom: 0
 .breadcrumb
 	padding-top: 15px
+	padding-bottom: 45px
+
 	li
 		padding: 0
 		color: #7c7c7c
@@ -126,25 +117,33 @@ ul ul, ul ol, ol ol, ol ul
 		&:not(:last-child):after
 			content: '/'
 			display: inline-block
-			margin-left: 15px
+			margin-left: 10px
 			position: relative
 			top: 1px
 
 		&:last-child
 			a
 				cursor: text
-
+.d-flex
+	display: flex
+	&.iac
+		align-items: center
+	&.jcc
+		justify-content: center
+	&.jcfe
+		justify-content: flex-end
+a
+	&:hover
+		text-decoration: none
 
 button
 	cursor: pointer
 // 1. Header //
-header
-	position: relative
-	padding-bottom: 50px
+
 .header-container
 	background-color: #fff
 	position: relative
-	z-index: 10
+	//z-index: 10
 	.btn-sky
 		width: 40px
 		padding: 9px 0
@@ -153,14 +152,13 @@ header
 		i
 			font-size: 22px
 .header-top
-	background: #e8f7f6
+	background: lighten($accent, 40%)
 	color: $accent
 	font-size: 0.875em
 	width: 100%
 	padding: 4px 0 5px
 	i
 		color: $accent
-		font-size: 17px
 		margin-right: 5px
 	.account-link
 		display: inline-block
@@ -173,6 +171,16 @@ header
 			background: darken(#fff, 2%)
 			i
 				color: $accent
+.box-phone, .box-open
+	font-weight: bold
+	display: inline-block
+	padding: 0 15px
+	span
+		font-weight: normal
+	a
+		color: $accent
+		&:hover
+			color: darken($accent, 5%)
 .headerlinkmenu
 	.links
 		li
@@ -186,7 +194,7 @@ header
 		a
 			display: inline-block
 			padding: 0 8px
-			color: $accent2
+			color: $accent
 			&:hover
 				color: $text
 				text-decoration: none
@@ -205,69 +213,24 @@ header
 		transform: translate3d(100%, 0, 0)
 		transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s
 .header-inner
-	padding: 5px 0
-.top-search
-	.input-group
-		border-radius: 5px
-		display: inline-block
-		overflow: hidden
-		width: 100%
-	.form-control
-		height: 40px
-		display: inline-block
-		width: 100%
-		border: none
-		background: #f6f5f0
-		box-shadow: none
-		font-size: 14px
-		padding-left: 15px
-		&:focus
-			background: #f6f5f0
-	button
-		line-height: 40px
-		padding: 0 12px
-		display: inline-block
-		border: none
-		position: absolute
-		right: 0
-		top: 0
-		z-index: 5
-		background: none
-		transition: $trans3
-		i
-			color: lighten($accent, 10%)
-		&:hover
-			border: none
-			i
-				color: $accent
-		i
-			font-size: 20px
-	.modal-lg
-		width: 700px
+	padding: 15px 0
 .form-control::-moz-placeholder
 	color: #333333
+.phone-img
+	margin-right: 10px
 .phone-contain
+	line-height: 1
 	.phone
 		font-weight: bold
-		font-size: 1.375em
-		//line-height: 1.2
-		a
-			color: $text
-			text-decoration: underline
-			display: inline-block
-			//margin-bottom: 10px
-		small
-			display: block
-			font-size: .684em
-			font-weight: normal
+		color: $text
+		display: inline-block
 	.callback
-		font-size: .875em
-		line-height: 1.4
+		font-size: 0.75em
 		display: inline-block
 		font-weight: bold
 		position: relative
-		top: -5px
-		color: #bd33cd
+		top: 0px
+		color: $accent
 		border-bottom: 1px dashed #bd33cd
 		&:hover
 			text-decoration: none
@@ -323,19 +286,6 @@ header
 		line-height: 38px
 		margin-top: 0px
 		vertical-align: 5px
-
-.logo
-	vertical-align: middle
-	text-align: center
-	a
-		display: inline-block
-.top-cart
-	display: flex
-	justify-content: flex-end
-	align-items: center
-	a
-		&:hover
-			text-decoration: none
 .btn-sky
 	position: relative
 	display: inline-block
@@ -358,6 +308,8 @@ header
 		color: $accent
 		transition: $trans3
 .top-cart-contain
+	position: relative
+	top: 5px
 	.price
 		color: #000
 		font-weight: 600
@@ -371,25 +323,27 @@ header
 			font-weight: 600
 			padding-left: 0px
 			font-size: 12px
+	.text-price
+		font-weight: bold
 .timer 
 	.text
 		line-height: 1
 .mini-cart
 	text-align: center
 	display: inline-block
-	width: 100%
-	height: 100%
+	margin-right: 10px
+	position: relative
 	.basket 
 		.cart-total
 			background-color: $accent
 			border-radius: 10em
 			color: #fff
-			font-size: 18px
-			height: 30px
-			width: 30px
-			line-height: 28px
+			font-size: 14px
+			height: 22px
+			width: 22px
+			line-height: 22px
 			position: absolute
-			left: -13px
+			left: 24px
 			top: -13px
 			text-align: center
 .link-wishlist
@@ -407,78 +361,6 @@ header
 		top: -13px
 		text-align: center
 
-.top-cart-contain
-	position: relative
-	.top-cart-content
-		opacity: 0
-		visibility: hidden
-		position: absolute
-		top: 100%
-		margin-top: 10px
-		right: 0
-		width: 250px
-		z-index: 50
-		background: #f4e770
-		border-radius: 6px
-		padding: 15px 25px
-		text-align: left
-		font-size: .875em
-		line-height: 1.25
-		transition: $trans3
-		&:after
-			content: ''
-			position: absolute
-			top: -10px
-			right: 15px
-			border-width: 5px 10px
-			border-style: solid
-			border-color: transparent transparent #f4e770 transparent
-		a:hover
-			text-decoration: underline
-	&:hover
-		.top-cart-content
-			opacity: 1
-			visibility: visible
-			margin-top: 5px
-	.mini-cart
-		&:hover 
-			.top-cart-content
-				opacity: 1
-				transform: scaleY(1)
-	.top-cart-add
-		position: absolute
-		right: 0
-		top: 100%
-		width: 360px
-		padding: 0 2px
-		+transition(height, .5s)
-		overflow: hidden
-		z-index: 51
-		display: none
-		.tab-panel-content
-			background: #fff
-			box-shadow: 0 1px 2px 0 rgba(0,0,0,.2)
-			margin-bottom: 5px
-		.added-to-bag
-			padding: 20px
-		.h5
-			margin-bottom: 15px
-		.product-tile
-			text-align: left
-			&:after
-				content: ''
-				display: table
-				clear: both
-		.product-img
-			max-width: 100px
-			float: left
-		.product-name
-			font-weight: bold
-			margin-bottom: 10px
-		.option-name
-			font-weight: 600
-		.product-attributes
-			margin-bottom: 10px
 .info-panel
 	display: none
 	.info-desc
@@ -502,37 +384,133 @@ header
 			text-decoration: none
 			color: #fff
 // Main menu //
-
-nav
+header
+	position: relative
+	z-index: 100
+.menu-row
+	background: #fff
+	box-shadow: 0 0 8px #eee
+.sticky-top
+	position: sticky
+	top: 0
+	z-index: 99
+	.logo
+		padding-right: 30px
+.nav
+	a
+		color: #333
+		background-color: #fff
+		&:hover
+			text-decoration: none
+	> li
+		> a
+			display: block
+.mega-menu-container
+	position: relative
+			
+.mega-menu-category
+	border: 1px solid #e5e5e5
+	box-shadow: 0 0 0 0 rgba(0,0,0,.2)
 	position: absolute
-	z-index: 5
-	width: 100%
-	//height: 46px
-	left: 0
-	background: rgba(#fff, .9)
-	transition: $trans3
-	a:hover
-		text-decoration: none
-	
-.mega-menu-title, .toggle-menu
+	left: -2px
+	width: 200px
+	z-index: 10
+	display: none
+	ul
+		list-style-type: none
+		padding: 0
+		margin: 0
+	.nav>li
+		position: relative
+		display: block
+	> .nav
+		> li
+			> a
+				border-bottom: 1px solid #e5e5e5
+				padding: 13px 15px
+				color: $accent2
+				font-size: 12px
+				text-transform: uppercase
+				letter-spacing: .5px
+				font-weight: bold
+				&:hover
+					background-color: $accent3
+			&.active
+				.wrap-popup
+					left: 100%
+			&:last-child
+				> a
+					border-bottom-width: 0px
+	.wrap-popup
+		position: absolute
+		left: 110%
+		top: 0
+		z-index: 100
+		width: 450px
+		transition: $trans3
+		&.column1
+			width: 230px
+	.popup
+		background-color: #fff
+		border: 1px solid #e5e5e5
+		box-shadow: 0 2px 5px 0 rgba(0,0,0,.2)
+		padding: 10px 20px
+		display: none
+		.row
+			.nav
+				margin-bottom: 10px
+		.nav
+			> li
+				> a
+					padding: 4px 0
+					line-height: 1.2
+					position: relative
+					font-size: 14px
+					background-color: #fff
+					&:hover
+						color: $accent
+				&.active
+					> a
+						color: $accent
+			li
+				transition: $trans3
+				&:hover, &.active
+					padding-left: 12px
+					transition: $trans3
+				&:before
+					content: '\f105'
+					position: absolute
+					left: 0
+					top: 1px
+					margin-top: 0
+					font-family: FontAwesome
+					font-size: 14px
+					color: $accent
+		h6
+			font-size: 12px
+			color: $accent2
+			text-transform: uppercase
+			margin-top: 5px
+			margin-bottom: 5px
+			letter-spacing: .5px
+.mega-menu-title
+	text-align: center
+	position: relative
 	.h3
-		display: inline-block
-		background: #8dbc4a
-		padding: 11px 12px
-		border-radius: 5px
-		color: #fff
+		display: block
+		cursor: pointer
+		transition: $trans3
+		padding: 20px 0
+		color: $accent2
 		font-size: 14px
-		font-weight: 500
 		text-transform: uppercase
 		margin-bottom: 0
 		i
-			margin-right: 10px
 			font-size: 1.4em
-			vertical-align: middle
-		span
-			vertical-align: middle
-		&:hover
-			background: darken(#8dbc4a, 5%)
+			position: absolute			
+			left: 15px
+			top: 13px
+			transition: transform .4s ease .1s
 .toggle-menu
 	display: none
 	position: absolute
@@ -545,26 +523,27 @@ nav
 			margin-right: 0
 			font-size: 1.2em
 .mtmegamenu
-	border-top: 1px solid #f0f0f0
 	//overflow-y: hidden
 	//height: 46px
 	ul
 		list-style-type: none
 		padding: 0
-		margin-bottom: 0
+		margin: 0
 	>ul
 		>li
 			display: inline-block
 			a
 				display: block
-				padding: 5px 0
+				padding: 15px 20px
 				line-height: 1.2
 				text-align: center
 				white-space: nowrap
 				font-size: 14px
-				font-family: $heading-font
-				font-weight: 500
 				text-transform: uppercase
+				font-weight: bold
+				color: $accent2
+				&:hover
+					text-decoration: none
 	li
 		&.active
 			a
@@ -596,30 +575,23 @@ nav
 			padding-top: 7px
 			padding-right: 0
 
-.content
+.content, #content
 	padding-bottom: 40px
 .section
 	margin-bottom: 30px
-.main-slider 
-	padding-top: 20px
 .bannerpro
 	margin: 0 0 60px
 	.item
 		background-position: center
-	.owl-wrapper-outer
-		border: none
-		border-radius: 0
-		box-shadow: none
-.owl-wrapper-outer
-	border: none
-	box-shadow: none
-	border-radius: 0
-.banner-home
-	.col-sm-auto
-		&:first-child
-			width: 59.86%
-		&:last-child
-			width: 40.14%
+.banner-top
+	.right-block
+		width: 56%
+	.left-block
+		width: 44%
+		.item
+			height: 50%
+			background-size: cover
+			background-position: center
 .owl-carousel
 	&.brand
 		.item
@@ -720,74 +692,128 @@ nav
 	top: 10px
 [class*='modul']
 	margin-bottom: 80px
+.brand-wrap
+	position: relative
+	margin-bottom: 30px
+	overflow: hidden
+	border-radius: 6px
+	a
+		position: absolute
+		display: flex
+		align-items: center
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		background: $accent
+		text-align: center
+		opacity: 0
+		&:hover
+			opacity: .9
+	.h4
+		color: #fff
+		margin: 0
+		width: 100%
 
 // Product //
-.category-wrap
-	margin-bottom: 40px
-
 .product-layout
 	margin-bottom: 30px
-	position: relative
-	
-.product-thumb
-	box-shadow: 0px 0px 0px 1px #d9d9d9
-	padding: 5px 5px 25px
+	overflow: hidden
 	background: #fff
 	transition: $trans3
-	.image
-		margin-bottom: 15px
+	border-radius: 6px
+	&:hover
+		z-index: 3
+		box-shadow: 0px 0px 29px 3px rgba(#000, .15)
+		.product-thumb
+			a:before
+				opacity: .1
+		.btn
+			opacity: 1
+			+transform(0, 0)
 	.caption
 		text-align: center
-	.product-title
+	.h4
 		line-height: 1.2
+		font-size: 1.125em
 		min-height: 38px
 		max-height: 38px
 		overflow: hidden
 		padding: 0 20px
+		margin-bottom: 20px
 		a
 			color: #191919
-			font-size: 0.875em
 			&:hover
 				color: $accent
 				text-decoration: none
 	.price
-		text-align: center
-		color: #252525
+		color: $accent
 		font-weight: bold
 		font-size: 1.125em
 		line-height: 1
-		min-height: 36px
+		min-height: 36px	
 	.price-old
 		color: $text
 		font-weight: normal
 		font-size: .85em
 		text-decoration: line-through
-	.rating
-		min-height: 26px
-		line-height: 1
-		i
-			color: #FFC227
-	.button-group
-		text-align: center
-		overflow: hidden
 	.btn
 		color: #fff
-	.btn-sky
+		text-transform: uppercase
 		position: absolute
-		top: 10px
-		right: 10px
-		visibility: hidden
-		+ .btn-sky
-			top: 55px
-.sort-block
+		left: 0
+		bottom: 0
+		border-radius: 0
+		z-index: 10
+		+transform(0, 100%)
+		opacity: 0
+
+.product-thumb
+	margin-bottom: 25px
+	position: relative
+	overflow: hidden
+	transition: $trans3
+	a
+		display: block
+		&:before
+			content: ''
+			position: absolute
+			left: 0
+			top: 0
+			width: 100%
+			height: 100%
+			z-index: 9
+			transition: $trans3
+			background: #444
+			opacity: 0
+.product-variation
 	margin-bottom: 30px
+.rating
+	margin-bottom: 15px
+	display: inline-block
+	margin-right: 10px
+	i
+		font-size: 18px
+		color: #FFC227
+.reting-links
+	margin-bottom: 14px
+	display: inline-block
+	a
+		font-size: 13px
+		color: $text
+		&:hover
+			text-decoration: none
+			color: $accent
+.sort-block
+	margin-bottom: 20px
 	font-size: .875em
 	.sort-label
 		color: #898989
 	select.form-control:not([size]):not([multiple])
-		height: 2.25rem
+		height: 2rem
 	.form-control
 		font-size: 14px
+		padding: 0 8px 2px
 		&:focus
 			box-shadow: none
 .pagination
@@ -885,20 +911,26 @@ nav
 .gray
 	color: $text-gray
 .product-data
-	color: #252525
 	font-size: .875em
 	margin-bottom: 30px
-	ul
-		margin-bottom: 20px
+	h1
+		margin-bottom: 15px
+		line-height: 1
 	li
 		display: block
+		margin-bottom: 10px
+		a
+			color: $accent
+			&:hover
+				color: darken($accent, 10%)
 	.price-wrap
 		margin-bottom: 15px
 	.price
-		display: block
 		font-weight: bold
-		font-size: 2.4em
-		line-height: 1
+		font-size: 1.75em
+		//line-height: 1
+		color: $accent
+		margin-right: 5px
 	.price-old
 		text-decoration: line-through
 		color: #363636
@@ -988,13 +1020,14 @@ nav
 .nav-tabs
 	list-style-type: none
 	margin: 0
+	padding-top: 30px
 	li
 		display: inline-block
 		a
 			display: block
 			min-width: 200px
 			text-align: center
-			color: #191919
+			color: $text
 			font-size: .875em
 			font-weight: 600
 			padding: 15px 20px
@@ -1002,7 +1035,8 @@ nav
 			&:hover
 				text-decoration: none
 			&.active
-				background-image: linear-gradient(to right, #f5c42c, #ed8a38) 
+				background: $accent
+				color: #fff
 
 .tab-content
 	border: 1px solid #d9d9d9
@@ -1170,6 +1204,19 @@ nav
 			.bf-btn-reset
 				right: 45px
 //Main Catalog
+.category-wrap
+	margin-bottom: 40px
+	h1
+		margin-bottom: 30px
+		font-weight: normal
+	.description
+		color: #ef6ea8
+		font-size: .875em
+		line-height: 1.2
+		font-style: italic
+		padding: 20px 0
+.category-name
+	line-height: 33px
 .main-catalog
 	margin-bottom: 30px
 	img
@@ -1204,17 +1251,23 @@ nav
 	text-decoration: none
 .btn
 	display: inline-block
-	padding: 8px 12px
+	padding: 10px 30px
+	min-width: 170px
 	position: relative
 	border: none
-	font-size: 14px
+	border-radius: 6px
+	font-size: 18px
 	font-weight: 600
+	color: #fff
 	text-decoration: none
+	text-transform: uppercase
 	text-align: center
 	outline: none
 	cursor: pointer
 	background: $accent
 	transition: $trans3
+	i
+		margin-right: 6px
 	&.btn-danger
 		color: red
 		&:hover
@@ -1229,16 +1282,9 @@ nav
 	&:focus, &:hover
 		text-decoration: none
 	&:hover
-		background-color: darken($accent2, 10%)
-		background-image: linear-gradient(to right, #ed8a38, #f5c42c) 
-		color: $text
+		background-color: darken($accent, 10%)
 	&:active
-		background-color: darken($accent2, 5%)
-		top: 1px
-	+ .btn
-		margin-left: 10px
-	+ .btn-sky
-		margin-left: 10px
+		background-color: darken($accent, 5%)
 	&.btn-lg
 		font-size: 16px
 	&.btn-block
@@ -1335,58 +1381,72 @@ nav
 			line-height: 1.2
 			min-height: 36px
 footer
-	background: #F8F8F8
+	background: $accent3
 .footer
-	padding: 25px 0
-	color: #191919
-	.phone-contain
-		margin-bottom: 5px
-	.payment
+	padding: 30px 0
+	.logo
+		display: block
+		text-align: center
+		background: #FFACD3
+		border-radius: 0 0 15px 15px
+		padding: 15px 0
+		margin-top: -30px
+		h4
+			color: #fff
+			font-weight: normal
+	.box-phone, .box-open
+		display: block
+		padding: 0
 		margin-bottom: 5px
 	h4
 		font-family: Arial, sans-serif
 		margin-bottom: 15px
 	ul.default
-		margin-left: 22px
 		li
 			line-height: 1.2
+			position: relative
+			transition: $trans3
+			&:before
+				content: '\f105'
+				position: absolute
+				left: 0
+				top: 3px
+				font-family: 'FontAwesome'
+				color: $text
+			&:hover
+				padding-left: 12px
+				a
+					color: $accent
 			a
-				color: inherit
-				font-family: Arial, sans-serif
+				color: $text
 				display: block
-				padding: 3px 0
-	.logo
-		text-align: left
-		margin-bottom: 15px
-	.copyright
-		font-family: Arial, sans-serif
-		font-size: 10px
-		color: #7b7b7b
-		line-height: 1.2
-	.lab
-		font-size: 14px
-		display: inline-block
-		color: #e42615
-		img
-			max-width: 120px
-
+				position: relative
+				padding: 4px 0
+				background: $accent3
+.footer-bottom
+	background: #FFACD3
+	padding: 10px 0
+.copyright
+	font-family: Arial, sans-serif
+	font-size: 14px
+	color: #7b7b7b
+	line-height: 1.2
+	margin: 0
+	text-align: right
+.lab
+	font-size: 14px
+	display: inline-block
+	color: #e42615
+	img
+		max-width: 120px
 .payment
-	li
-		width: 58px
-		height: 36px
-		background-image: url(../image/visa.png)
-		background-repeat: no-repeat
-		background-size: cover
-		&.mc
-			background-position: -59px 0
-		&.mir
-			background-position: -117px 0
+	text-align: center
+	img
 .social
 	a
 		font-size: 30px
 		color: #646464
 		line-height: 1
-		padding: 0 2px
 		&:hover
 			color: $accent
 .terms
@@ -1431,34 +1491,29 @@ footer
 			color: $accent
 .quantity
 	max-width: 70px
-	height: 32px
 	position: relative
-	margin: 0 auto
+	display: inline-block
+	margin-right: 18px
 	.form-control
-		padding-top: 3px
-		padding-bottom: 3px
+		padding: 11px 15px
+		&:focus
 	span
 		display: block
 		position: absolute
 		right: 1px
-		z-index: 1
 		width: 26px
 		height: 50%
 		font-size: 14px
 		text-align: center
 		line-height: 1
 		cursor: pointer
-		background: #d1d1d1
-		&.more
-			top: 1px
-			border-bottom: 2px solid #fff
-			border-top-right-radius: .15rem
+		padding: 4px 0
+		&.plus
+			top: 0
 			&:before
 				content: '\f077'
-		&.less
-			bottom: 1px
-			border-top: 2px solid #fff
-			border-bottom-right-radius: .15rem
+		&.minus
+			bottom: 0
 			&:before
 				content: '\f078'
 		&:before
@@ -1481,7 +1536,6 @@ label
 		padding-left: 16px
 .product-thumb
 	position: relative
-
 .product-label 
 	position: absolute
 	top: 5px
@@ -1708,7 +1762,61 @@ label
 		position: absolute
 		top: 100%
 
-//iSearch		
+//iSearch
+.top-search
+	position: relative
+	.search-icon
+		padding: 0 15px
+		margin-top: 2px
+		cursor: pointer
+		&.active
+			.rt-icon2-search:before
+				content: '\f00d'
+		i
+			font-size: 28px
+			width: 28px
+			display: inline-block
+			color: #9C9C9C
+	.input-group
+		border-radius: 5px
+		display: inline-block
+		width: 100%
+	.form-control
+		height: 46px
+		display: inline-block
+		width: 100%
+		border: 1px solid #dedede
+		background: #fff
+		box-shadow: none
+		font-size: 14px
+		padding: 10px 20px
+		&:focus
+			background: #fff
+	button
+		line-height: 46px
+		padding: 0 12px
+		display: inline-block
+		font-size: 16px
+		min-width: 120px
+		border: none
+		border-radius: 0 3px 3px 0
+		position: absolute
+		right: 0
+		top: 0
+		z-index: 5
+		color: #fff
+		background: $accent
+		transition: $trans3
+		i
+			color: lighten($accent, 10%)
+		&:hover
+			border: none
+			i
+				color: $accent
+		i
+			font-size: 20px
+	.modal-lg
+		width: 700px
 .iSearchBox
 	padding: 10px
 	background: white
@@ -1737,6 +1845,8 @@ label
 					box-shadow: none
 	li 
 		margin-bottom: 5px
+		display: flex
+		align-items: center
 		cursor: pointer
 		padding: 0 10px
 		border-top: 1px solid #fff
@@ -1748,37 +1858,33 @@ label
 		&:hover 
 			h3, .iSearchModel, .iSearchPrice
 				color: $accent
-		
 		&.iSearchNoResults, &.iSearchNoResults:hover
 			box-shadow: 0 1px 1px #fff
 			border-top: 1px solid #fff
 			cursor: default
 			text-align: center
 		img
-			float: left
 			padding-right: 10px
 			max-width: 60px
 		.iSearchItem
-			min-height: 50px
+			display: flex
+			width: 100%
+			align-items: center
+			justify-content: space-between
 		h3
 			padding: 0
 			margin: 0
-			padding-top: 5px
-			//padding-bottom: 10px
-			width: 55%
-			float: left
 			overflow: hidden
 			white-space: normal !important
 			line-height: 16px
 			font-size: 12px
 			//color: #003264
 		.iSearchPrice
-			float: right
 			font-weight: bold
-			color: #333
 			font-size: 12px
 			display: block
-			padding: 5px 0 10px
+			span
+				white-space: nowrap
 			.specialPrice
 				color: red
 				text-decoration: line-through
@@ -1793,7 +1899,11 @@ label
 		text-align: center
 		line-height: 20px	
 .iSearchBoxWrapper
-	position: relative	
+	display: none
+	opacity: 0
+	position: absolute
+	right: 100%
+	top: -6px
 	.clearfix
 		zoom: 1
 		&:before,

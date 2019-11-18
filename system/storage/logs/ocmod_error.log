@@ -1,0 +1,14 @@
+2019-11-18 7:25:18 - ----------------------------------------------------------------
+NOT FOUND!
+CODE: <div class="image"><a href="<?php echo $product['href']; ?>">
+FILE: catalog/view/theme/asiabeauty/template/product/product.tpl
+MOD: Opencart2 Auto Labels (Sale, Bestseller, Last, Sold and NEW)
+----------------------------------------------------------------
+NOT FOUND!
+CODE: <div class="image"><a href="<?php echo $product['href']; ?>">
+FILE: catalog/view/theme/asiabeauty/template/product/category.tpl
+MOD: Opencart2 Auto Labels (Sale, Bestseller, Last, Sold and NEW)
+----------------------------------------------------------------
+MISSING FILE!
+L:/OpenServer/domains/asiabeauty.loc/catalog/controller/extension/module/featured.php
+MOD: Opencart2 Auto Labels (Sale, Bestseller, Last, Sold and NEW)

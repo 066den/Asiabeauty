@@ -18,6 +18,29 @@ class ControllerExtensionModuleBestSeller extends Controller {
 
 		$this->load->model('tool/image');
 
+
+// Labels start
+				$this->load->model('setting/setting');
+				$data['labels_status'] = $this->config->get('labels_status');
+				$data['labels_sold_status'] = $this->config->get('labels_sold_status');
+				$data['labels_last_status'] = $this->config->get('labels_last_status');
+				$data['labels_new'] = $this->config->get('labels_new');
+				$data['labels_sale_type'] = $this->config->get('labels_sale_type');
+				$data['labels_new_text'] = $this->config->get('labels_new_text-'.$this->config->get('config_language_id'));
+				$data['labels_bestseller_text'] = $this->config->get('labels_bestseller_text-'.$this->config->get('config_language_id'));
+				$data['labels_last_text'] = $this->config->get('labels_last_text-'.$this->config->get('config_language_id'));
+				$data['labels_sold_text'] = $this->config->get('labels_sold_text-'.$this->config->get('config_language_id'));
+				$data['labels_sale_text'] = $this->config->get('labels_sale_text-'.$this->config->get('config_language_id'));
+				$data['bestsellers'] = array();
+				$bestsellers = $this->model_catalog_product->getBestSellerProducts( $this->config->get('labels_bestseller') );
+
+				foreach ($bestsellers as $bestseller) {				
+					$data['bestsellers'][] = array(
+						'bestseller_id' => $bestseller['product_id']
+					);
+				}
+// Labels end
+			
 		$data['products'] = array();
 
 		$results = $this->model_catalog_product->getBestSellerProducts($setting['limit']);
@@ -62,6 +85,14 @@ class ControllerExtensionModuleBestSeller extends Controller {
 					'price'       => $price,
 					'special'     => $special,
 					'tax'         => $tax,
+
+// Labels start
+				'is_new'      => date_diff(new DateTime(date("Y-m-d H:i:s")), new DateTime(date($result['date_added'])))->days,
+				'percent'     => $result['special'] !=0 && $result['price'] !=0 ? round(100 - ($result['special']*100/$result['price'])) : 0,
+				'sold'        => $result['quantity'] <= 0 ? 1 : 0,
+				'last'        => $result['quantity'],
+// Labels end
+			
 					'rating'      => $rating,
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'])
 				);

@@ -39,9 +39,9 @@ gulp.task('watch', ['sass', 'browser-sync'], function() {
 // Выгрузка изменений на хостинг
 gulp.task('deploy', function() {
 	var conn = ftp.create({
-		host:      '',
-		user:      '',
-		password:  '',
+		host:      '78.46.104.109',
+		user:      'wm62010',
+		password:  '1N47QA3Z9',
 		parallel:  10,
 		log: gutil.log
 	});
@@ -49,7 +49,7 @@ gulp.task('deploy', function() {
 	'catalog/view/theme/asiabeauty/**'
 	];
 	return gulp.src(globs, {buffer: false})
-	.pipe(conn.dest('/domains/yarkolyaska.ru/catalog/view/theme/asiabeauty/'));
+	.pipe(conn.dest('/domains/profden.ru/public_html/asiabeauty/catalog/view/theme/asiabeauty/'));
 });
 
 gulp.task('default', ['watch']);

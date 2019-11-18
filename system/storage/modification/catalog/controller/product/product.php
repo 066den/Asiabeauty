@@ -67,6 +67,21 @@ class ControllerProductProduct extends Controller {
 			}
 		}
 
+
+// Labels start
+				$this->load->model('setting/setting');
+				$data['labels_status'] = $this->config->get('labels_status');
+				$data['labels_sold_status'] = $this->config->get('labels_sold_status');
+				$data['labels_last_status'] = $this->config->get('labels_last_status');
+				$data['labels_new'] = $this->config->get('labels_new');
+				$data['labels_sale_type'] = $this->config->get('labels_sale_type');
+				$data['labels_new_text'] = $this->config->get('labels_new_text-'.$this->config->get('config_language_id'));
+				$data['labels_bestseller_text'] = $this->config->get('labels_bestseller_text-'.$this->config->get('config_language_id'));
+				$data['labels_last_text'] = $this->config->get('labels_last_text-'.$this->config->get('config_language_id'));
+				$data['labels_sold_text'] = $this->config->get('labels_sold_text-'.$this->config->get('config_language_id'));
+				$data['labels_sale_text'] = $this->config->get('labels_sale_text-'.$this->config->get('config_language_id'));
+// Labels end
+			
 		$this->load->model('catalog/manufacturer');
 
 		if (isset($this->request->get['manufacturer_id'])) {
@@ -227,6 +242,7 @@ class ControllerProductProduct extends Controller {
 
 				$this->document->addStyle('catalog/view/javascript/jquery/owl-carousel/owl.carousel.css');
 		        $this->document->addScript('catalog/view/javascript/jquery/owl-carousel/owl.carousel.min.js');
+				$this->document->addScript('catalog/view/theme/asiabeauty/libs/cloud-zoom.js');
 			
 
 			$data['heading_title'] = $product_info['name'];
@@ -282,6 +298,7 @@ class ControllerProductProduct extends Controller {
 			
 			$data['reward'] = $product_info['reward'];
 			$data['points'] = $product_info['points'];
+ $data['quantity'] = $product_info['quantity']; 
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 
 			    if ($this->customer->isLogged()) {
@@ -364,6 +381,18 @@ class ControllerProductProduct extends Controller {
 				);
 			}
 
+
+// Labels start
+			$data['bestsellers'] = array();
+				$bestsellers = $this->model_catalog_product->getBestSellerProducts($this->config->get('labels_bestseller'));
+
+			foreach ($bestsellers as $bestseller) {				
+					$data['bestsellers'][] = array(
+						'bestseller_id' => $bestseller['product_id']
+				);
+			}
+// Labels end
+			
 			$data['options'] = array();
 
 			foreach ($this->model_catalog_product->getProductOptions($this->request->get['product_id']) as $option) {
@@ -469,6 +498,10 @@ class ControllerProductProduct extends Controller {
 				}
 
 				$data['products'][] = array(
+ 
+				'quantity' => $result['quantity'],
+				'minimum'	  => $result['minimum'],	
+			
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
 					'name'        => $result['name'],
@@ -478,10 +511,26 @@ class ControllerProductProduct extends Controller {
 					'tax'         => $tax,
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $rating,
+
+// Labels start
+				'is_new'      => date_diff(new DateTime(date("Y-m-d H:i:s")), new DateTime(date($result['date_added'])))->days,
+				'percent'     => $result['special'] !=0 && $result['price'] !=0 ? round(100 - ($result['special']*100/$result['price'])) : 0,
+				'sold'        => $result['quantity'] <= 0 ? 1 : 0,
+				'last'        => $result['quantity'],
+// Labels end
+			
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'])
 				);
 			}
 
+
+// Labels start
+				$data['is_new'] 	= date_diff(new DateTime(date("Y-m-d H:i:s")), new DateTime(date($product_info['date_added'])))->days;
+				$data['sold'] 		= $product_info['quantity'] <= 0 ? 1 : 0;
+				$data['percent'] 	= $product_info['special'] !=0 && $product_info['price'] !=0 ? round(100 - ($product_info['special']*100/$product_info['price'])) : 0;
+				$data['last'] 		= $product_info['quantity'];
+// Labels end
+			
 			$data['tags'] = array();
 
 			if ($product_info['tag']) {

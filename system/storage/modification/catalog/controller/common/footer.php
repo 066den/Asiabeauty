@@ -21,7 +21,7 @@ class ControllerCommonFooter extends Controller {
 				$data['name'] = $this->config->get('config_name');
 				$data['text_open'] = $this->language->get('text_open');
 				$data['open'] = nl2br($this->config->get('config_open'));
-				
+				$data['email'] = $this->config->get('config_email');
 			
 
 		$data['scripts'] = $this->document->getScripts('footer');

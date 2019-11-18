@@ -1,6 +1,17 @@
 <?php
 class ControllerCommonHeader extends Controller {
 	public function index() {
+
+// Labels start
+			$this->load->model('setting/setting');
+			$data['labels_status'] = $this->config->get('labels_status');
+			$data['labels_new_bg'] = $this->config->get('labels_new_bg');
+			$data['labels_bestseller_bg'] = $this->config->get('labels_bestseller_bg');
+			$data['labels_last_bg'] = $this->config->get('labels_last_bg');
+			$data['labels_sold_bg'] = $this->config->get('labels_sold_bg');
+			$data['labels_sale_bg'] = $this->config->get('labels_sale_bg');
+// Labels end
+			
 		// Analytics
 		$this->load->model('extension/extension');
 
@@ -52,7 +63,7 @@ class ControllerCommonHeader extends Controller {
 				$this->load->model('catalog/information');
 				$data['informations'] = array();
 				foreach ($this->model_catalog_information->getInformations() as $result) {
-				    if ($result['bottom']) {
+				    if (in_array($result['information_id'], array(7,6))) {
 					    $data['informations'][] = array(
 						    'title' => $result['title'],
 						    'href'  => $this->url->link('information/information', 'information_id=' . $result['information_id'])
@@ -63,10 +74,16 @@ class ControllerCommonHeader extends Controller {
 
 			    $data['catalog_link'] = $this->url->link('information/information', 'information_id=10');
 			
-				$data['text_open'] = $this->language->get('text_open');;
+				$data['news'] = $this->url->link('information/news');
+				$data['text_open'] = $this->language->get('text_open');
 				$data['open'] = nl2br($this->config->get('config_open'));
 				$data['email'] = $this->config->get('config_email');
 				$data['info'] = nl2br($this->config->get('config_comment'));
+				$data['text_brands'] = $this->language->get('text_brands');
+				$data['text_about'] = $this->language->get('text_about');
+				$data['text_news'] = $this->language->get('text_news');
+				$data['brands'] = $this->url->link('product/manufacturer');
+				$data['about'] = $this->url->link('information/information', 'information_id=4');
 			
 
 		// Wishlist
@@ -162,11 +179,28 @@ class ControllerCommonHeader extends Controller {
 						'filter_sub_category' => true
 					);
 
-					$children_data[] = array(
-'category_id'     => $child['category_id'],
-						'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
-						'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])
+					
+ 				///////////////// Level 3
+ 				$subchildren_data = array();
+ 				$subchildren = $this->model_catalog_category->getCategories($child['category_id']);
+ 				foreach ($subchildren as $subchild) {
+ 					$filter_data = array(
+						'filter_category_id'  => $subchild['category_id'],
+						'filter_sub_category' => true
 					);
+					$subchildren_data[] = array(
+						'name'  => $subchild['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+						'href'  => $this->url->link('product/category', 'path=' . $child['category_id'] . '_' . $subchild['category_id']),
+					);
+				}
+				////////////////// Level 2
+				$children_data[] = array(
+					'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+					'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id']),
+					'subchildren' => $subchildren_data, 
+				);
+			  
+			
 				}
 
 				// Level 1

@@ -1,8 +1,30 @@
 <?php
 class ControllerCatalogManufacturer extends Controller {
+
+	public function load_popup() {
+		if ((int)$this->config->get('aqe_status') && (int)$this->config->get('aqe_catalog_manufacturers_status')) {
+			return $this->load->controller('catalog/aqe/manufacturer/load_popup');
+		} else {
+			$this->response->redirect($this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'] . $url, true));
+		}
+	}
+
+	public function quick_update() {
+		if ((int)$this->config->get('aqe_status') && (int)$this->config->get('aqe_catalog_manufacturers_status')) {
+			return $this->load->controller('catalog/aqe/manufacturer/quick_update');
+		} else {
+			$this->response->redirect($this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'] . $url, true));
+		}
+	}
+			
 	private $error = array();
 
 	public function index() {
+
+		if ((int)$this->config->get('aqe_status') && (int)$this->config->get('aqe_catalog_manufacturers_status')) {
+			return $this->load->controller('catalog/aqe/manufacturer');
+		}
+			
 		$this->load->language('catalog/manufacturer');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -26,6 +48,15 @@ class ControllerCatalogManufacturer extends Controller {
 
 			$url = '';
 
+
+		if ($this->config->get('aqe_status') && $this->config->get('aqe_catalog_manufacturers_status')) {
+			foreach ($this->config->get('aqe_catalog_manufacturers') as $column => $attr) {
+				if ($attr['filter']['show'] && isset($this->request->get['filter_' . $column])) {
+					$url .= '&filter_' . $column . '=' . urlencode(html_entity_decode($this->request->get['filter_' . $column], ENT_QUOTES, 'UTF-8'));
+				}
+			}
+		}
+			
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
@@ -58,6 +89,15 @@ class ControllerCatalogManufacturer extends Controller {
 
 			$url = '';
 
+
+		if ($this->config->get('aqe_status') && $this->config->get('aqe_catalog_manufacturers_status')) {
+			foreach ($this->config->get('aqe_catalog_manufacturers') as $column => $attr) {
+				if ($attr['filter']['show'] && isset($this->request->get['filter_' . $column])) {
+					$url .= '&filter_' . $column . '=' . urlencode(html_entity_decode($this->request->get['filter_' . $column], ENT_QUOTES, 'UTF-8'));
+				}
+			}
+		}
+			
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
@@ -77,6 +117,11 @@ class ControllerCatalogManufacturer extends Controller {
 	}
 
 	public function delete() {
+
+		if ((int)$this->config->get('aqe_status') && (int)$this->config->get('aqe_catalog_manufacturers_status')) {
+			return $this->load->controller('catalog/aqe/manufacturer/delete');
+		}
+			
 		$this->load->language('catalog/manufacturer');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -92,6 +137,15 @@ class ControllerCatalogManufacturer extends Controller {
 
 			$url = '';
 
+
+		if ($this->config->get('aqe_status') && $this->config->get('aqe_catalog_manufacturers_status')) {
+			foreach ($this->config->get('aqe_catalog_manufacturers') as $column => $attr) {
+				if ($attr['filter']['show'] && isset($this->request->get['filter_' . $column])) {
+					$url .= '&filter_' . $column . '=' . urlencode(html_entity_decode($this->request->get['filter_' . $column], ENT_QUOTES, 'UTF-8'));
+				}
+			}
+		}
+			
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
@@ -131,6 +185,15 @@ class ControllerCatalogManufacturer extends Controller {
 
 		$url = '';
 
+
+		if ($this->config->get('aqe_status') && $this->config->get('aqe_catalog_manufacturers_status')) {
+			foreach ($this->config->get('aqe_catalog_manufacturers') as $column => $attr) {
+				if ($attr['filter']['show'] && isset($this->request->get['filter_' . $column])) {
+					$url .= '&filter_' . $column . '=' . urlencode(html_entity_decode($this->request->get['filter_' . $column], ENT_QUOTES, 'UTF-8'));
+				}
+			}
+		}
+			
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
 		}
@@ -231,6 +294,15 @@ class ControllerCatalogManufacturer extends Controller {
 
 		$url = '';
 
+
+		if ($this->config->get('aqe_status') && $this->config->get('aqe_catalog_manufacturers_status')) {
+			foreach ($this->config->get('aqe_catalog_manufacturers') as $column => $attr) {
+				if ($attr['filter']['show'] && isset($this->request->get['filter_' . $column])) {
+					$url .= '&filter_' . $column . '=' . urlencode(html_entity_decode($this->request->get['filter_' . $column], ENT_QUOTES, 'UTF-8'));
+				}
+			}
+		}
+			
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
 		}
@@ -277,6 +349,12 @@ $data['lang'] = $this->language->get('code');
 		$data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$data['entry_customer_group'] = $this->language->get('entry_customer_group');
 
+            $data['entry_description'] = $this->language->get('entry_description');
+            $data['entry_meta_title'] = $this->language->get('entry_meta_title');
+            $data['entry_meta_description'] = $this->language->get('entry_meta_description');
+            $data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
+            
+
 		$data['help_keyword'] = $this->language->get('help_keyword');
 
 		$data['button_save'] = $this->language->get('button_save');
@@ -294,6 +372,13 @@ $data['lang'] = $this->language->get('code');
 			$data['error_name'] = '';
 		}
 
+            if (isset($this->error['meta_title'])) {
+                $data['error_meta_title'] = $this->error['meta_title'];
+            } else {
+                $data['error_meta_title'] = array();
+            }
+            
+
 		if (isset($this->error['keyword'])) {
 			$data['error_keyword'] = $this->error['keyword'];
 		} else {
@@ -302,6 +387,15 @@ $data['lang'] = $this->language->get('code');
 
 		$url = '';
 
+
+		if ($this->config->get('aqe_status') && $this->config->get('aqe_catalog_manufacturers_status')) {
+			foreach ($this->config->get('aqe_catalog_manufacturers') as $column => $attr) {
+				if ($attr['filter']['show'] && isset($this->request->get['filter_' . $column])) {
+					$url .= '&filter_' . $column . '=' . urlencode(html_entity_decode($this->request->get['filter_' . $column], ENT_QUOTES, 'UTF-8'));
+				}
+			}
+		}
+			
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
 		}
@@ -340,6 +434,10 @@ $data['lang'] = $this->language->get('code');
 
 		$data['token'] = $this->session->data['token'];
 
+            $this->load->model('localisation/language');
+            $data['languages'] = $this->model_localisation_language->getLanguages();
+            
+
 		if (isset($this->request->post['name'])) {
 			$data['name'] = $this->request->post['name'];
 		} elseif (!empty($manufacturer_info)) {
@@ -368,6 +466,15 @@ $data['lang'] = $this->language->get('code');
 			$data['keyword'] = '';
 		}
 
+
+            if (isset($this->request->post['manufacturer_description'])) {
+                $data['manufacturer_description'] = $this->request->post['manufacturer_description'];
+            } elseif (isset($this->request->get['manufacturer_id'])) {
+                $data['manufacturer_description'] = $this->model_catalog_manufacturer->getManufacturerDescriptions($this->request->get['manufacturer_id']);
+            } else {
+                $data['manufacturer_description'] = array();
+            }
+            
 		if (isset($this->request->post['image'])) {
 			$data['image'] = $this->request->post['image'];
 		} elseif (!empty($manufacturer_info)) {
@@ -412,6 +519,15 @@ $data['lang'] = $this->language->get('code');
 			$this->error['name'] = $this->language->get('error_name');
 		}
 
+            foreach ($this->request->post['manufacturer_description'] as $language_id => $value) {
+                
+                if ((utf8_strlen($value['meta_title']) < 3) || (utf8_strlen($value['meta_title']) > 255)) {
+                    $this->error['meta_title'][$language_id] = $this->language->get('error_meta_title');
+                }
+
+            }
+            
+
 		if (utf8_strlen($this->request->post['keyword']) > 0) {
 			$this->load->model('catalog/url_alias');
 
@@ -448,6 +564,11 @@ $data['lang'] = $this->language->get('code');
 	}
 
 	public function autocomplete() {
+
+		if ((int)$this->config->get('aqe_status') && (int)$this->config->get('aqe_catalog_manufacturers_status')) {
+			return $this->load->controller('catalog/aqe/manufacturer/autocomplete');
+		}
+			
 		$json = array();
 
 		if (isset($this->request->get['filter_name'])) {
